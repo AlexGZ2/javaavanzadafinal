@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Product Manager</title>
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+                    <style>
+                        body {
+                            font-family: "Alata", cursive;
+                            font-size: 15px;
+                            font-align: center;
+                            font-decoration: wheat;
+                        }
+                    </style>
+                    </head>
+                    <body>
+                        <div align="center">
+                            <p th:text="${session.mySessionAttribute}" th:unless="${session == null}">[...]</p>
+                            <h1>Tabla de IMC</h1>
+
+                            <table border="5" align="center" bordercolor="black" cellpadding="1" class="table table-striped table-hover">
+                                <thead>
+                                    <tr valign="bottom" align="center">
+                                        <th width="215" bgcolor="yellow">ID</th>
+                                        <th width="215" bgcolor="yellow">nombrecompleto</th>
+                                        <th width="215" bgcolor="yellow">edad</th>
+                                        <th width="215" bgcolor="yellow">peso</th>
+                                        <th width="215" bgcolor="yellow">altura (1m - 2.5 m)</th>
+                                        <th width="215" bgcolor="yellow">IMC</th>
+                                        <th width="215" bgcolor="yellow">resultados</th>
+                                        <th width="215" bgcolor="yellow">acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="product : ${listProducts}">
+                                        <td align="center" th:text="${product.id}"> ID</td>
+                                        <td th:text="${product.nombrecompleto}">NombreCompleto</td>
+                                        <td th:text="${product.resul}">Edad</td>
+                                        <td align="center" th:text="${product.peso}">Peso</td>
+                                        <td align="center" th:text="${product.alt}">Altura</td>
+                                        <td align="center" th:text="${product.imr}">Imc</td>
+                                        <td align="center" th:text="${product.results}">Resultado</td>
+                                        <td align="center">
+                                            <a th:href="@{'/edit/' + ${product.id}}">Editar</a>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <a th:href="@{'/delete/' + ${product.id}}">Borrar</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a align="center" href="new">Agregar datos de la persona</a>
+                        </div>    
+                    </body>
+                    </html>
